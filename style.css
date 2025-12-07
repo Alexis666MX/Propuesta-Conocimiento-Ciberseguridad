@@ -1,0 +1,142 @@
+:root {
+    --primary-color: #00ff41; /* Verde neón */
+    --secondary-color: #a020f0; /* Violeta */
+    --background-color: #0d0221; /* Azul oscuro casi negro */
+    --text-color: #f0f0f0; /* Blanco roto */
+    --card-bg: #1a1a2e;
+    --error-color: #ff4d4d;
+    --success-color: #00ff41;
+    --warning-color: #ffc107;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Header y Animación Glitch (Sin cambios) --- */
+header {
+    background: var(--background-color);
+    text-align: center;
+    padding: 4rem 0;
+    border-bottom: 2px solid var(--primary-color);
+}
+.glitch { font-size: 4rem; color: var(--primary-color); position: relative; animation: glitch 2.5s infinite; text-transform: uppercase; }
+.glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--background-color); overflow: hidden; }
+.glitch::before { left: 2px; text-shadow: -2px 0 var(--secondary-color); animation: glitch-anim-1 2s infinite linear alternate-reverse; }
+.glitch::after { left: -2px; text-shadow: -2px 0 #ff00c1; animation: glitch-anim-2 2.5s infinite linear alternate-reverse; }
+@keyframes glitch { 0% { transform: translate(0); } 20% { transform: translate(-3px, 3px); } 40% { transform: translate(-3px, -3px); } 60% { transform: translate(3px, 3px); } 80% { transform: translate(3px, -3px); } 100% { transform: translate(0); } }
+@keyframes glitch-anim-1 { 0% { clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%); } 100% { clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%); } }
+@keyframes glitch-anim-2 { 0% { clip-path: polygon(0 25%, 100% 25%, 100% 30%, 0 30%); } 100% { clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%); } }
+header p { font-size: 1.2rem; color: var(--text-color); opacity: 0.8; }
+
+/* --- Estilos Generales de Secciones --- */
+main section {
+    padding: 50px 20px;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    background: rgba(0, 255, 65, 0.1);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 4px;
+}
+
+.section-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 30px;
+    border: 2px solid var(--secondary-color);
+    opacity: 0.8;
+}
+
+/* --- Tarjetas de Malware --- */
+.card-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.card { background-color: var(--card-bg); border: 1px solid var(--secondary-color); padding: 20px; border-radius: 8px; transition: transform 0.3s, box-shadow 0.3s; }
+.card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(160, 32, 240, 0.4); }
+.card h3 { color: var(--primary-color); margin-top: 0; }
+
+/* --- Caja de Datos Curiosos --- */
+.fact-box {
+    background: var(--card-bg);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+}
+.fact-box p { margin: 0 0 15px; padding-bottom: 15px; border-bottom: 1px dashed rgba(255,255,255,0.2); }
+.fact-box p:last-child { margin-bottom: 0; border-bottom: none; }
+
+/* --- Contenedor de Video --- */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Proporción 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 8px;
+    border: 2px solid var(--primary-color);
+}
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Test de Conocimiento Mejorado --- */
+#test-conocimiento { background-color: var(--card-bg); padding: 30px; border-radius: 8px; border: 1px solid var(--primary-color); }
+.question { margin-bottom: 20px; }
+.question p { font-weight: bold; color: var(--text-color); }
+.question label { display: block; margin: 10px 0; cursor: pointer; padding: 10px; border-radius: 5px; border: 1px solid transparent; transition: background-color 0.3s, border-color 0.3s; }
+.question label:hover { background-color: rgba(160, 32, 240, 0.3); border-color: var(--secondary-color); }
+button { background-color: var(--primary-color); color: var(--background-color); border: none; padding: 15px 30px; font-size: 1rem; font-weight: bold; cursor: pointer; border-radius: 5px; transition: background-color 0.3s, transform 0.3s; text-transform: uppercase; display: block; margin: 20px auto 0; }
+button:hover { background-color: #fff; transform: scale(1.05); }
+
+#quizResult { margin-top: 30px; font-size: 1.5rem; text-align: center; font-weight: bold; padding-bottom: 20px; border-bottom: 1px solid var(--secondary-color); }
+#quizFeedback { margin-top: 20px; }
+.feedback-item { margin-bottom: 15px; padding: 10px; border-radius: 5px; }
+.feedback-item.correct { background-color: rgba(0, 255, 65, 0.1); border-left: 4px solid var(--success-color); }
+.feedback-item.incorrect { background-color: rgba(255, 77, 77, 0.1); border-left: 4px solid var(--error-color); }
+.feedback-item strong { color: var(--primary-color); }
+
+/* --- Footer --- */
+footer { text-align: center; padding: 20px; margin-top: 40px; color: rgba(240, 240, 240, 0.6); }
